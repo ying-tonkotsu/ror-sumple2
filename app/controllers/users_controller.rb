@@ -20,7 +20,9 @@ class UsersController < ApplicationController
         @user = User.new(
             name: params[:name],
             email: params[:email],
-            password: params[:password]
+            password: params[:password],
+            # デフォルト画像
+            image_name: "default.jpg"
             )
         # 入力されたデータが保存できたら
         if @user.save

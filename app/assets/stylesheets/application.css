@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+.profile_image{
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 60%;
+    border: solid 3px yellow;
+    }
