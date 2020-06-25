@@ -1,10 +1,32 @@
 <div>
     <h2>login</h2>
-    <%= form_tag("/users/login") do %>
-          <p>登録メールアドレス</p>
-          <input>
-           <p>パスワード</p>
-          <input type="password">
-          <input type="submit" value="ログイン">
+        <%# エラーメッセージ %>
+      <% if @error_message %>
+      <div class="form_error">
+      <%# エラーメッセージを表示 %>
+        <p class="error">
+          <%= @error_message %>
+        </p>
+      </div>
+      <% end %>
+      <%# エラーメッセージ %>
+    <%= form_tag("/login") do %>
+         <ul class="flex">
+            <li>
+                <p>email</p>
+            </li>
+            <li>
+                <input name="email" value="<%= @email%>">
+            </li>
+        </ul>
+        <ul class="flex">
+            <li>
+                <p>password</p>
+            </li>
+            <li>
+                <input name="password" type="password" value="<%= @password%>">
+            </li>
+        </ul>
+        <input type="submit" value="login" class="Login">
     <% end %>
 </div>

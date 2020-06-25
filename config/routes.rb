@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   # 新規登録情報を保存
   post '/users/create' => 'users#create'
-
-  # ログインフォーム
-  get '/login' => 'users#login_form'
-  # ユーザー詳細
+   # ユーザー詳細
   get '/users/:id' => 'users#show'
+
+ # ログイン画面
+ get '/login' => 'users#login_form'
+ #「get」と「post」では異なるルーティングとして扱われるので問題ない。
+ # ログイン処理
+ #ログインフォームからデータを送信
+ post '/login' => 'users#login'
 
 
 
