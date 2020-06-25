@@ -44,20 +44,31 @@ class UsersController < ApplicationController
     end
     #更新
     def update
-            #IDを取得して編集するインスタンスを特定
+        # URLからIDを取得し、ユーザー情報を格納
         @user = User.find_by(id: params[:id])
-        # 内容を入力されたデータに更新
+        # 入力されたデータを格納
         @user.name = params[:name]
         @user.email = params[:email]
-        # データが保存できたら
+        @user.password = params[:password]
+
+        # 画像が入力されていたら
+        if params[:image]
+        # ファイル名をユーザーIDに指定
+            @user.image_name = "#{@user.id}.jpg"
+            #入力されたファイルを格納
+            image = params[:image]
+            # public/user_imagesフォルダに画像データを格納
+            File.binwrite("public/user_images/#{@user.image_name}",image.read)
+        end
+
+        # データを更新
         if @user.save
-        # サクセスメッセージを表示し、詳細ページへ転送
-        flash[:notice] = "ユーザー情報が更新されました"
-        redirect_to("/users/#{@user.id}")
+            #保存できたら、サクセスメッセージを表示してユーザー詳細ページへ転送
+            flash[:notice] = "アカウント情報が更新されました"
+            redirect_to("/users/#{@user.id}")
         else
-        # 保存に失敗したら入力画面へ戻る
-        flash[:notice] = "エラーが発生しました"
-        render("users/edit")
+            # 失敗した場合は入力画面に戻す
+            render("users/edit")
         end
     end
 
