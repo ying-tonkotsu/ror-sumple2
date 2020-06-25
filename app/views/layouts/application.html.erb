@@ -16,6 +16,14 @@
     <%= flash[:notice] %>
     </div>
   <% end %>
+  <% if @current_user %>
+    <p>
+      こんにちは！ <%= @current_user.name %>さん
+    </p>
+  <% else%>
+    <p>こんにちは！　ゲストさん</p>
+  <% end %>
+
     <%= yield %>
   </body>
 </html>

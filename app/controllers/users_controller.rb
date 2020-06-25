@@ -47,18 +47,28 @@ class UsersController < ApplicationController
         if @user
              # 特定したユーザーのIDをブラウザに記憶させる(ログインユーザーの情報を保持)
             session[:user_id] = @user.id
-            flash[:notice] = "ログインしました! #{@user.name}"
+            flash[:notice] = "ログインしました"
             redirect_to("/users/index")
         # 認証失敗
         else
             # エラーメッセージ
-            @error_message = "メールアドレスかパスワードが間違っているか、登録されていません"
+            @error_message = "メールアドレスまたはパスワードが間違っているか、登録されていません"
             # 初期値
             @email = params[:email]
             @password = params[:password]
             # やり直し
             render("users/login_form")
         end
+    end
+
+    # ログアウト処理
+    def logout
+        # セッションIDを削除
+        session[:user_id] = nil
+        # メッセージ
+        flash[:notice] = "ログアウトしました"
+        # ログインページへ転送
+        redirect_to("/login")
     end
 
 
