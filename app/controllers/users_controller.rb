@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     # 新規作成（サインアップ）
      def new
-
+        @user = User.new
      end
 
     #  新規登録情報をセーブ
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
             flash[:notice] = "登録が完了しました"
             redirect_to("/users/#{@user.id}")
         else
-            flash[:notice] = "エラー"
+            flash[:notice] = "エラーが発生しました"
             render('users/new')
         end
     end
