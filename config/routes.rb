@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   post 'users/create' => 'users#create'
    # ユーザー詳細
   get 'users/:id' => 'users#show'
+  # アカウント情報編集フォーム
+  get 'users/:id/edit' => 'users#edit'
+  # アカウント情報更新
+  post 'users/:id/update' => 'users#update'
 
 
 

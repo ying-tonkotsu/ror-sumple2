@@ -35,6 +35,30 @@ class UsersController < ApplicationController
         end
     end
 
+    # アカウント情報の編集
+    def edit
+        # URLからIDを取得
+        @user = User.find_by(id: params[:id])
+    end
+    #更新
+    def update
+            #IDを取得して編集するインスタンスを特定
+        @user = User.find_by(id: params[:id])
+        # 内容を入力されたデータに更新
+        @user.name = params[:name]
+        @user.email = params[:email]
+        # データが保存できたら
+        if @user.save
+        # サクセスメッセージを表示し、詳細ページへ転送
+        flash[:notice] = "ユーザー情報が更新されました"
+        redirect_to("/users/#{@user.id}")
+        else
+        # 保存に失敗したら入力画面へ戻る
+        flash[:notice] = "エラーが発生しました"
+        render("users/edit")
+        end
+    end
+
     # ログインフォーム
     def login_form
 

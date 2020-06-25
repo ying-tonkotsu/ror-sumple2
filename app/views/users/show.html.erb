@@ -4,4 +4,7 @@
     </h2>
     <p>Email: <%= @user.email %></p>
     <p>password: <%= @user.password %></p>
+    <% if @user.id == @current_user.id %>
+      <%= link_to("edit","/users/#{@user.id}/edit")%>
+    <% end %>
 </div>
