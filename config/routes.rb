@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # 新規登録情報を保存
   post '/users/create' => 'users#create'
 
+  # ログインフォーム
+  get '/login' => 'users#login_form'
   # ユーザー詳細
   get '/users/:id' => 'users#show'
 

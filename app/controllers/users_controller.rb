@@ -29,4 +29,8 @@ class UsersController < ApplicationController
             render('users/new')
         end
     end
+
+    def login_form
+        
+    end
 end
