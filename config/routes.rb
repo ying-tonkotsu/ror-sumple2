@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # ユーザー一覧
   get '/users/index' => 'users#index'
+  # ユーザー詳細
+  get '/users/:id' => 'users#show'
 
 
   # サイトマップへ飛ばす
