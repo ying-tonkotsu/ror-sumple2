@@ -1,3 +1,6 @@
 class UsersController < ApplicationController
-    # 新規登録
+    # ユーザー一覧
+    def index
+
+    end
 end
