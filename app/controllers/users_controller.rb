@@ -9,4 +9,8 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
     end
 
+    # 新規作成（サインアップ）
+     def new
+
+     end
 end
