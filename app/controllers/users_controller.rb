@@ -13,4 +13,20 @@ class UsersController < ApplicationController
      def new
 
      end
+
+    #  新規登録情報をセーブ
+    def create
+        @user = User.new(
+            name: params[:name],
+            email: params[:email],
+            password: params[:password]
+            )
+        if @user.save
+            flash[:notice] = "登録が完了しました"
+            redirect_to("/users/#{@user.id}")
+        else
+            flash[:notice] = "エラー"
+            render('users/new')
+        end
+    end
 end
