@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     # ゲストユーザーへの処理
-    before_action :authenticate_user,{only: [:index, :show, :edit, :update, :logout]}
+    before_action :authenticate_user,{only: [:index, :show, :edit, :update]}
     # 既にログイン済みのユーザーへの処理
     before_action :forbid_login_user,{only: [:login_form, :login, :new, :create]}
 

@@ -13,14 +13,19 @@
   <%# フラッシュを表示 %>
   <% if flash[:notice]%>
     <div class="flash">
-    <%= flash[:notice] %>
+      <%= flash[:notice] %>
     </div>
   <% end %>
-  <% if @current_user %>
+  <% if @admin %>
     <p>
-      こんにちは！ <%= @current_user.name %>さん
+      管理者モードです<br>
+      こんにちは！　<%= @admin.name %>さん
     </p>
-  <% else%>
+  <% elsif @current_user %>
+    <p>
+    　こんにちは！ <%= @current_user.name %>さん
+    </p>
+  <% else %>
     <p>こんにちは！　ゲストさん</p>
   <% end %>
 

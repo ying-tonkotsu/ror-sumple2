@@ -4,8 +4,21 @@
     　<%= @user.name %>
     </h2>
     <p>Email: <%= @user.email %></p>
-    <p>password: <%= @user.password %></p>
-    <% if @user.id == @current_user.id %>
+    <%# パスワードの表示は管理者か本人のみ %>
+     <%# 管理者か %>
+    <% if @admin %>
+      <p>password: <%= @user.password %></p>
+    <%# ユーザー本人か %>
+    <% elsif @user.id == @current_user.id %>
+      <p>password: <%= @user.password %></p>
+    <% end %>
+
+    <%# 管理者か %>
+    <% if @admin %>
+      <%= link_to("edit","/users/#{@user.id}/edit")%>
+    <%# ユーザー本人か %>
+    <% elsif @user.id == @current_user.id %>
       <%= link_to("edit","/users/#{@user.id}/edit")%>
     <% end %>
+
 </div>

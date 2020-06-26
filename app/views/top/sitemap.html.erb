@@ -1,7 +1,7 @@
 
 <div>
     <h1>site map</h1>
-    <% if @current_user %>
+    <% if @current_user%>
         <%= link_to("アカウント情報","/users/#{@current_user.id}") %>
         <%= link_to("ユーザー一覧","/users/index") %>
         <%# 大事 %>
@@ -10,5 +10,5 @@
         <%= link_to("新規登録","/signup") %>
         <%= link_to("ログイン","/login") %>
     <% end %>
-    
+
 </div>
