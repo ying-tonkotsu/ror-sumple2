@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    # ゲストユーザーへの処理
+    before_action :authenticate_user,{only: [:index, :show, :edit, :update, :logout]}
     # ユーザー一覧
     def index
         @users = User.all
