@@ -3,6 +3,8 @@ class UsersController < ApplicationController
     before_action :authenticate_user,{only: [:index, :show, :edit, :update]}
     # 既にログイン済みのユーザーへの処理
     before_action :forbid_login_user,{only: [:login_form, :login, :new, :create]}
+    #URLを直接叩かれた際「権限がありません」ではじく
+    before_action :ensure_correct_user,{only: [:destroy, :edit, :update]}
 
     # ユーザー一覧
     def index
@@ -133,4 +135,13 @@ class UsersController < ApplicationController
     redirect_to("/users/index")
   end
 
+  def ensure_correct_user
+    pageuser_id = params[:id].to_i
+    if @admin
+    #転送なし
+    elsif @current_user.id != pageuser_id
+      flash[:notice] = "ユーザー権限がありません"
+      redirect_to("/users/index")
+    end
+  end
 end
