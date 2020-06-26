@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   get 'users/:id/edit' => 'users#edit'
   # アカウント情報更新
   post 'users/:id/update' => 'users#update'
-
+  # アカウントの削除
+  post 'users/:id/destroy' => 'users#destroy'
 
 
 

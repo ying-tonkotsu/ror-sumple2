@@ -13,12 +13,19 @@
       <p>password: <%= @user.password %></p>
     <% end %>
 
+    <%# 編集へのリンク %>
     <%# 管理者か %>
     <% if @admin %>
-      <%= link_to("edit","/users/#{@user.id}/edit")%>
+      <%= link_to("アカウント情報の編集","/users/#{@user.id}/edit")%>
     <%# ユーザー本人か %>
     <% elsif @user.id == @current_user.id %>
-      <%= link_to("edit","/users/#{@user.id}/edit")%>
+      <%= link_to("アカウント情報の編集","/users/#{@user.id}/edit")%>
+    <% end %>
+
+    <%# アカウントの削除リンク %>
+    <%# 管理者か %>
+    <% if @admin %>
+      <%= link_to("アカウントの削除","/users/#{@user.id}/destroy", {method: :post}) %>
     <% end %>
 
 </div>

@@ -121,4 +121,16 @@ class UsersController < ApplicationController
         end
     end
 
+    # アカウントの削除
+  def destroy
+    # URLからIdを取得
+    @user = User.find_by(id:params[:id])
+    # DBから削除
+    @user.destroy
+    # 通知を表示
+    flash[:notice] = "アカウントを削除しました"
+    # indexページに転送
+    redirect_to("/users/index")
+  end
+
 end
