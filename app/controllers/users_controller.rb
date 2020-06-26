@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
     # ゲストユーザーへの処理
     before_action :authenticate_user,{only: [:index, :show, :edit, :update, :logout]}
+    # 既にログイン済みのユーザーへの処理
+    before_action :forbid_login_user,{only: [:login_form, :login, :new, :create]}
+
     # ユーザー一覧
     def index
         @users = User.all
@@ -110,5 +113,12 @@ class UsersController < ApplicationController
         redirect_to("/login")
     end
 
+    # 既にログイン済みのユーザーへの処理
+    def forbid_login_user
+        if @current_user
+            flash[:notice] = "既にログインしています"
+            redirect_to("/")
+        end
+    end
 
 end
